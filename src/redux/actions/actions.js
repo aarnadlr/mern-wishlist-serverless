@@ -23,7 +23,7 @@ export const setItemsLoading = () => {
 export const getItems = () => (dispatch, getState) => {
   dispatch(setItemsLoading());
   axios
-    .get('/api/items')
+    .get('/api/items/get')
     .then(res =>
       dispatch({
         type: GET_ITEMS,

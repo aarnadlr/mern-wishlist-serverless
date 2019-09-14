@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "0.19.0",
     "bootstrap": "4.3.1",
     "dotenv": "8.1.0",
     "lodash": "4.17.15",
@@ -15,6 +16,7 @@
     "react-transition-group": "4.3.0",
     "reactstrap": "8.0.1",
     "redux": "4.0.4",
+    "redux-thunk": "2.3.0",
     "uuid": "3.3.3"
   },
   "scripts": {

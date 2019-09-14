@@ -6,14 +6,6 @@ const ItemSchema = new mongoose.Schema({
     required: true,
     default: 'anonymous'
   },
-  // description: {
-  //   type: String,
-  //   required: true
-  // },
-  // price: {
-  //   type: Number,
-  //   required: true
-  // },
   date: {
     type: Date,
     default: Date.now,
