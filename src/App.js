@@ -60,8 +60,8 @@ function App() {
       <h2>
         3. The ADDED ITEM:{' '}
         <span style={{ color: 'purple' }}>
-          {addedItem ? JSON.stringify(addedItem) : 'Loading...'}
-          {addedItem && console.log('ITEM ADDED!:', JSON.stringify(addedItem))}
+          {addedItem ? addedItem.name : 'Loading...'}
+          {/*{addedItem && console.log('ITEM ADDED!:', JSON.stringify(addedItem))}*/}
         </span>
       </h2>
 
