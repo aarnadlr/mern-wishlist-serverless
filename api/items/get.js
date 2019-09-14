@@ -8,7 +8,7 @@ const connect = ()=>{
     .connect(process.env.MONGODB_URI, {
       useUnifiedTopology: true,
       useNewUrlParser: true,
-      useMongoClient: true
+      // useMongoClient: true
     })
     .then(() => console.log('MONGOOSE CONNECTED'))
     .catch(e => console.log('THE ERR!:', e));

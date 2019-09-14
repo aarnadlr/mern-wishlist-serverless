@@ -30,9 +30,18 @@ function App() {
 
   const handleAdd = () => {
     async function addItem() {
-      const res = await fetch('/api/items/add');
-      const theAddedItem = await res.json();
-      setAddedItem(theAddedItem);
+      try {
+        const response = await fetch('/api/items/add', {
+          method: 'POST',
+          body: { "name": "MARGE" },
+          // headers: { 'Content-Type': 'application/json' }
+        });
+        const theAddedItem = await response.json();
+        // console.log('theAddedItem', theAddedItem);
+        setAddedItem(theAddedItem);
+      } catch (e) {
+        console.error('CLIENT ERROR: ', e.message);
+      }
     }
     addItem();
   };
@@ -60,7 +69,7 @@ function App() {
       <h2>
         3. The ADDED ITEM:{' '}
         <span style={{ color: 'purple' }}>
-          {addedItem ? addedItem.name : 'Loading...'}
+          {addedItem ? JSON.stringify(addedItem) : 'Loading...'}
           {/*{addedItem && console.log('ITEM ADDED!:', JSON.stringify(addedItem))}*/}
         </span>
       </h2>
