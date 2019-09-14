@@ -18,5 +18,6 @@ module.exports = (req, res) => {
   connect();
   Item.findById(req.query.id)
     .then(item => item.remove())
-    .then(() => res.json({ deleted: true }));
+    .then(() => res.json({ deleted: true }))
+    .catch(err=>res.status(404).json({deleted: false}));
 };
