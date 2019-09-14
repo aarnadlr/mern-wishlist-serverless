@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const ItemSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    default: 'anonymous'
   },
   // description: {
   //   type: String,

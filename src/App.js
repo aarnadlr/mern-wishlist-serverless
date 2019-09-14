@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import ProductList from "./components/ProductList";
+// import ProductList from "./components/ProductList";
 
 function App() {
   const [name, setName] = useState(null);
@@ -79,9 +79,8 @@ function App() {
 
       <button onClick={handleAdd}>ADD ITEM</button>
 
-      /////////////////////////
 
-      <ProductList/>
+      {/*<ProductList/>*/}
     </main>
   );
 }

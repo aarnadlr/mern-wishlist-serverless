@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, Form, Input } from 'reactstrap';
-import { addItem, addItemBtnClicked } from '../redux/actions/actions';
+// import { addItem, addItemBtnClicked } from '../redux/actions/actions';
 import { useDispatch } from 'react-redux';
 import FormGroup from 'reactstrap/es/FormGroup';
 
