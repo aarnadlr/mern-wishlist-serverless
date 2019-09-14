@@ -34,22 +34,28 @@ module.exports = async (req, res) => {
     color: 'red'
   };
 
+  // let savedItem = '';
   // Insert a single document
   // let resObj = await collection.insertOne(
-  collection.insertOne(
-    newItem,
-    {
-      w: 'majority',
-      wtimeout: 10000,
-      serializeFunctions: true
-    },
-    function(err, res) {
-      assert.equal(null, err);
-      assert.equal(1, res.insertedCount);
-      client.close();
-      savedItem = res
-    }
-  );
+  try {
+    collection.insertOne(
+      newItem,
+      {
+        w: 'majority',
+        wtimeout: 10000,
+        serializeFunctions: true
+      },
+       function (err, res) {
+        assert.equal(null, err);
+        assert.equal(1, res.insertedCount);
+        client.close();
+        // savedItem = res;
+      }
+    );
 
-  res.status(200).json({ success: 'true' });
+    res.status(200).json({ success: 'true3' });
+
+  } catch (e) {
+    console.log('THE ERROR:', e);
+  }
 };

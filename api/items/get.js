@@ -1,43 +1,36 @@
 require('dotenv').config();
-const MongoClient = require('mongodb').MongoClient;
-const url = require('url');
+// const MongoClient = require('mongodb').MongoClient;
+// const url = require('url');
 
-// Create cached connection variable
-let cachedDb = null;
-
-async function connectToDatabase(uri) {
-  // If the database connection is cached,
-  // use it instead of creating a new connection
-  if (cachedDb) {
-    return cachedDb;
-  }
-
-  // If no connection is cached, create a new one
-  const client = await MongoClient.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
-
-  // Select the database through the connection,
-  // using the database path of the connection string
-  const db = await client.db(url.parse(uri).pathname.substr(1));
-
-  return db;
-}
+const mongoose = require('mongoose');
+const Item = require('../../models/Item');
 
 // The main, exported, function of the endpoint,
 // dealing with the request and subsequent response
-module.exports = async (req, res) => {
-  // Get a database connection, cached or otherwise,
-  // using the connection string environment variable as the argument
-  const db = await connectToDatabase(process.env.MONGODB_URI);
+module.exports = (req, res) => {
 
-  // Select the "items" collection
-  const collection = await db.collection('items');
+  mongoose
+    .connect(process.env.MONGODB_URI, { useUnifiedTopology: true })
+    .then(() => console.log('MONGOOSE CONNECTED'))
+    .catch(e => console.log('THE ERR!:', e));
 
-  // Query the "items" collection
-  const itemsArr = await collection.find({}).toArray();
-
-  // Respond with a JSON string of all users in the collection
-  res.status(200).json({ itemsArr });
+  Item.find()
+    .then(items=>res.json(items))
+  //   const Item = connection.model('Item', ItemSchema);
+  //
+  //   Item.find({}, (error, items) => {
+  //     if (error) {
+  //       connection.close();
+  //       res.status(500).json({ error });
+  //       return;
+  //     }
+  //     res.set('cache-control', 's-maxage=1, maxage=0, stale-while-revalidate');
+  //     res.body = {success:true}
+  //     res.status(200).json({ items });
+  //     connection.close();
+  //   });
+  // } catch (e) {
+  //   connection.close();
+  //   res.status(500).json({ error: e.message || 'uh oh ' });
+  // }
 };

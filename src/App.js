@@ -17,9 +17,13 @@ function App() {
 
   useEffect(() => {
     async function getItems() {
-      const res = await fetch('/api/items/get');
-      const theItemsObj = await res.json();
-      setItems(theItemsObj);
+      try {
+        const response = await fetch('/api/items/get');
+        const items = await response.json();
+        setItems(items);
+      } catch (e) {
+        console.error('CLIENT ERROR: ', e.message);
+      }
     }
     getItems();
   }, []);
@@ -41,13 +45,15 @@ function App() {
       <h2>
         1. The item name:{' '}
         <span style={{ color: 'hotpink' }}>
-          {items ? items.itemsArr[0].name : 'Loading items...'}
+          {/*{items ? items.itemsArr[0].name : 'Loading items...'}*/}
+          {items ? items[0].name : 'Loading items...'}
         </span>
       </h2>
       <h2>
         2. The item color:{' '}
         <span style={{ color: 'purple' }}>
-          {items ? items.itemsArr[0].color : 'Loading items...'}
+          {/*{items ? items.itemsArr[0].color : 'Loading items...'}*/}
+          {items ? items[0].color : 'Loading items...'}
         </span>
       </h2>
 

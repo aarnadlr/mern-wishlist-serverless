@@ -5,6 +5,7 @@
   "dependencies": {
     "dotenv": "8.1.0",
     "mongodb": "3.3.2",
+    "mongoose": "5.7.1",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1"
