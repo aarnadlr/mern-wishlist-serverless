@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
 
   // Query the "items" collection
   const itemsArr = await collection.find({}).toArray();
-  console.log("itemsArr:", JSON.stringify(itemsArr));
+
   // Respond with a JSON string of all users in the collection
   res.status(200).json({ itemsArr });
 };
