@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import ProductList from "./components/ProductList";
 
 function App() {
   const [name, setName] = useState(null);
@@ -31,12 +32,14 @@ function App() {
   const handleAdd = () => {
     async function addItem() {
       try {
+
         const response = await fetch('/api/items/add', {
           method: 'POST',
           body: { "name": "MARGE" },
           // headers: { 'Content-Type': 'application/json' }
         });
         const theAddedItem = await response.json();
+
         // console.log('theAddedItem', theAddedItem);
         setAddedItem(theAddedItem);
       } catch (e) {
@@ -75,6 +78,10 @@ function App() {
       </h2>
 
       <button onClick={handleAdd}>ADD ITEM</button>
+
+      /////////////////////////
+
+      <ProductList/>
     </main>
   );
 }
